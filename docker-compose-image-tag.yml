@@ -26,6 +26,7 @@ x-superset-volumes:
   &superset-volumes # /app/pythonpath_docker will be appended to the PYTHONPATH in the final container
   - ./docker:/app/docker
   - superset_home:/app/superset_home
+  # - ./superset-frontend/plugins/superset-plugin-chart-gantt:
 
 services:
   redis:
