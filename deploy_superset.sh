@@ -1,7 +1,7 @@
 #!/bin/bash
 
 eval "$(ssh-agent -s)"
-ssh-add /home/root/.ssh/mykey
+ssh-add /root/.ssh/mykey
 
 git pull
 
