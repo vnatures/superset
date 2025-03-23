@@ -34,6 +34,8 @@ import RoseChartPlugin from '@superset-ui/legacy-plugin-chart-rose';
 import TableChartPlugin from '@superset-ui/plugin-chart-table';
 import { WordCloudChartPlugin } from '@superset-ui/plugin-chart-word-cloud';
 import WorldMapChartPlugin from '@superset-ui/legacy-plugin-chart-world-map';
+import { SupersetPluginChartHelloWorld } from '@superset-ui/superset-plugin-chart-hello-world';
+
 import {
   BubbleChartPlugin,
   BulletChartPlugin,
@@ -87,10 +89,10 @@ export default class MainPreset extends Preset {
       FeatureFlag.ChartPluginsExperimental,
     )
       ? [
-          new BigNumberPeriodOverPeriodChartPlugin().configure({
-            key: VizType.BigNumberPeriodOverPeriod,
-          }),
-        ]
+        new BigNumberPeriodOverPeriodChartPlugin().configure({
+          key: VizType.BigNumberPeriodOverPeriod,
+        }),
+      ]
       : [];
 
     super({
@@ -101,6 +103,7 @@ export default class MainPreset extends Preset {
         new BigNumberTotalChartPlugin().configure({
           key: VizType.BigNumberTotal,
         }),
+        new SupersetPluginChartHelloWorld().configure({ key: 'ext-hello-world', }),
         new EchartsBoxPlotChartPlugin().configure({ key: VizType.BoxPlot }),
         new BubbleChartPlugin().configure({ key: VizType.LegacyBubble }),
         new BulletChartPlugin().configure({ key: VizType.Bullet }),
