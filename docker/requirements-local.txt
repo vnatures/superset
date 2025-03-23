@@ -1,0 +1,2 @@
+apache-superset[databricks]
+apache-superset
