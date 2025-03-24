@@ -16,12 +16,18 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React, { PureComponent, createRef } from 'react';
+import React from 'react';
+
+import { PureComponent, createRef } from 'react';
 import { styled } from '@superset-ui/core';
+
 import {
   PluginChartHelloWorldProps,
   PluginChartHelloWorldStylesProps,
 } from './types';
+
+
+
 import Chart from 'react-google-charts';
 import * as _ from 'lodash';
 
@@ -43,9 +49,9 @@ const Styles = styled.div<PluginChartHelloWorldStylesProps>`
   h3 {
     /* You can use your props to control CSS! */
     font-size: ${({ theme, headerFontSize }) =>
-      theme.typography.sizes[headerFontSize]};
+    theme.typography.sizes[headerFontSize]};
     font-weight: ${({ theme, boldText }) =>
-      theme.typography.weights[boldText ? 'bold' : 'normal']};
+    theme.typography.weights[boldText ? 'bold' : 'normal']};
   }
 `;
 
@@ -76,7 +82,7 @@ export default class PluginChartHelloWorld extends PureComponent<PluginChartHell
 
     console.log('Plugin props', this.props);
 
-    let chartData = _.map(data, c => {
+    let chartData: (String | Number | Date | any)[][] = _.map(data, c => {
       // c.task_type != 'user.quality.photo' &&
       // c.task_type != 'user.regular.basic' &&
       // c.task_type != 'internal.fetch.var' &&
@@ -88,8 +94,8 @@ export default class PluginChartHelloWorld extends PureComponent<PluginChartHell
         taskType + taskName,
         taskName,
         taskType,
-        new Date(c.case_start),
-        new Date(c.case_complete),
+        new Date(c.case_start as any),
+        new Date(c.case_complete as any),
         null,
         100,
         null,

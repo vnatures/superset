@@ -37,7 +37,7 @@ services:
       - redis:/data
 
   db:
-    env_file:
+    env_file: 
       - path: docker/.env # default
         required: true
       - path: docker/.env-local # optional override

@@ -40,7 +40,7 @@ COPY docker/ /app/docker/
 ARG NPM_BUILD_CMD="build"
 
 # Install system dependencies required for node-gyp
-RUN /app/docker/apt-install.sh build-essential python3 zstd
+RUN /app/docker/apt-install.sh build-essential python3 zstd python3-dev musl-dev gcc
 
 # Define environment variables for frontend build
 ENV BUILD_CMD=${NPM_BUILD_CMD} \
