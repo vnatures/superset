@@ -1608,7 +1608,7 @@ DATABASE_OAUTH2_JWT_ALGORITHM = "HS256"
 DATABASE_OAUTH2_TIMEOUT = timedelta(seconds=30)
 
 # Enable/disable CSP warning
-CONTENT_SECURITY_POLICY_WARNING = True
+CONTENT_SECURITY_POLICY_WARNING = False
 
 # Do you want Talisman enabled?
 TALISMAN_ENABLED = utils.cast_to_boolean(os.environ.get("TALISMAN_ENABLED", True))
@@ -1618,30 +1618,45 @@ TALISMAN_ENABLED = utils.cast_to_boolean(os.environ.get("TALISMAN_ENABLED", True
 # https://superset.apache.org/docs/configuration/networking-settings/#changing-flask-talisman-csp
 
 TALISMAN_CONFIG = {
+    # "content_security_policy": {
+    #     "base-uri": ["'self'"],
+    #     "default-src": ["'self'"],
+    #     "img-src": [
+    #         "'self'",
+    #         "blob:",
+    #         "data:",
+    #         "https://apachesuperset.gateway.scarf.sh",
+    #         "https://static.scarf.sh/",
+    #         # "https://cdn.brandfolder.io", # Uncomment when SLACK_ENABLE_AVATARS is True  # noqa: E501
+    #         "ows.terrestris.de",
+    #     ],
+    #     "worker-src": ["'self'", "blob:"],
+    #     "connect-src": [
+    #         "'self'",
+    #         "https://api.mapbox.com",
+    #         "https://events.mapbox.com",
+    #     ],
+    #     "object-src": "'none'",
+    #     "style-src": [
+    #         "'self'",
+    #         "'unsafe-inline'",
+    #     ],
+    #     # "script-src": ["'self'", "'strict-dynamic'"],
+    #     "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'", "https://www.gstatic.com"],
+    # },
     "content_security_policy": {
-        "base-uri": ["'self'"],
-        "default-src": ["'self'"],
-        "img-src": [
-            "'self'",
-            "blob:",
-            "data:",
-            "https://apachesuperset.gateway.scarf.sh",
-            "https://static.scarf.sh/",
-            # "https://cdn.brandfolder.io", # Uncomment when SLACK_ENABLE_AVATARS is True  # noqa: E501
-            "ows.terrestris.de",
-        ],
-        "worker-src": ["'self'", "blob:"],
-        "connect-src": [
-            "'self'",
-            "https://api.mapbox.com",
-            "https://events.mapbox.com",
-        ],
-        "object-src": "'none'",
-        "style-src": [
+        "script-src": [
             "'self'",
             "'unsafe-inline'",
+            "'unsafe-eval'",
+            "https://www.gstatic.com"
         ],
-        "script-src": ["'self'", "'strict-dynamic'"],
+        "script-src-elem": [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "https://www.gstatic.com"
+        ],
     },
     "content_security_policy_nonce_in": ["script-src"],
     "force_https": False,
@@ -1649,30 +1664,44 @@ TALISMAN_CONFIG = {
 }
 # React requires `eval` to work correctly in dev mode
 TALISMAN_DEV_CONFIG = {
+    # "content_security_policy": {
+    #     "base-uri": ["'self'"],
+    #     "default-src": ["'self'"],
+    #     "img-src": [
+    #         "'self'",
+    #         "blob:",
+    #         "data:",
+    #         "https://apachesuperset.gateway.scarf.sh",
+    #         "https://static.scarf.sh/",
+    #         "https://cdn.brandfolder.io",
+    #         "ows.terrestris.de",
+    #     ],
+    #     "worker-src": ["'self'", "blob:"],
+    #     "connect-src": [
+    #         "'self'",
+    #         "https://api.mapbox.com",
+    #         "https://events.mapbox.com",
+    #     ],
+    #     "object-src": "'none'",
+    #     "style-src": [
+    #         "'self'",
+    #         "'unsafe-inline'",
+    #     ],
+    #     "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+    # },
     "content_security_policy": {
-        "base-uri": ["'self'"],
-        "default-src": ["'self'"],
-        "img-src": [
-            "'self'",
-            "blob:",
-            "data:",
-            "https://apachesuperset.gateway.scarf.sh",
-            "https://static.scarf.sh/",
-            "https://cdn.brandfolder.io",
-            "ows.terrestris.de",
-        ],
-        "worker-src": ["'self'", "blob:"],
-        "connect-src": [
-            "'self'",
-            "https://api.mapbox.com",
-            "https://events.mapbox.com",
-        ],
-        "object-src": "'none'",
-        "style-src": [
+        "script-src": [
             "'self'",
             "'unsafe-inline'",
+            "'unsafe-eval'",
+            "https://www.gstatic.com"
         ],
-        "script-src": ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        "script-src-elem": [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+            "https://www.gstatic.com"
+        ],
     },
     "content_security_policy_nonce_in": ["script-src"],
     "force_https": False,

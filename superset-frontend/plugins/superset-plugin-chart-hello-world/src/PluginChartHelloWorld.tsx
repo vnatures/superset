@@ -83,19 +83,15 @@ export default class PluginChartHelloWorld extends PureComponent<PluginChartHell
     console.log('Plugin props', this.props);
 
     let chartData: (String | Number | Date | any)[][] = _.map(data, c => {
-      // c.task_type != 'user.quality.photo' &&
-      // c.task_type != 'user.regular.basic' &&
-      // c.task_type != 'internal.fetch.var' &&
-      // c.task_type != 'user.quality.checklist'
-      const task = (c.task_type + '').split('.');
-      const taskType = `${task[0]}.${task[1]}`;
-      const taskName = `${task[2]}`;
+      const taskType = c.primary_activity_description as string;
+      const taskName = c.secondary_activity_description as string;
+      
       return [
         taskType + taskName,
         taskName,
         taskType,
-        new Date(c.case_start as any),
-        new Date(c.case_complete as any),
+        new Date(c.start_time as any),
+        new Date(c.end_datetime as any),
         null,
         100,
         null,
