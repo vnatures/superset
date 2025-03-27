@@ -62,8 +62,8 @@ superset/app/
 superset-websocket/config.json
 
 # Node.js, webpack artifacts, storybook
-*.entry.js
-*.js.map
+# *.entry.js
+# *.js.map
 node_modules
 npm-debug.log*
 # superset/static/assets/*
